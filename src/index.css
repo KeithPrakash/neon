@@ -10,5 +10,26 @@ body{
     font-family: "Plus Jakarta Sans", sans-serif;
 }  
 
- 
-  
+
+
+.parallax {
+    background-image: url('./assets//bg.png');
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position:relative;
+  }
+
+
+@keyframes parallax-scroll {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+}
+
+

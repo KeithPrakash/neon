@@ -23,6 +23,8 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        primaryCol:"#001897",
+        secondaryCol:"#000F5C",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -51,6 +53,7 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+     
       },
       borderRadius: {
         lg: "var(--radius)",
