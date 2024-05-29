@@ -224,7 +224,7 @@ function App() {
                 >
                   <img src={img8} alt="" className=" p-2  md:h-[330px]" />
 
-                  <img src={img9} alt="" className="p-2  md:h-[330px]]" />
+                  <img src={img9} alt="" className="p-2  md:h-[330px]" />
                 </Slider>
               </div>
             </div>
