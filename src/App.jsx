@@ -17,8 +17,8 @@ import nextIcon from "./assets/next.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import React, { useEffect, useRef } from "react";
-
+import React, { useEffect, useRef ,useState } from "react";
+import Aos from "aos";
 import {
   Accordion,
   AccordionContent,
@@ -27,9 +27,38 @@ import {
 } from "./components/ui/accordion.jsx";
 
 function App() {
-  let sliderRef = useRef(null);
+
+  const [hovered, setHovered] = useState(false);
+  // slider functions and refs
+  let sliderRef1 = useRef(null);
+  let sliderRef2 = useRef(null);
+  let sliderRef3 = useRef(null);
+  
   const next = () => {
-    sliderRef.slickNext();
+    sliderRef1.slickNext();
+  };
+  const next2 = () => {
+    sliderRef2.slickNext();
+  };
+  const next3 = () => {
+    sliderRef3.slickNext();
+  };
+
+  // smooth scroll
+  useEffect(() => {
+
+    document.documentElement.style.scrollBehavior = 'smooth';
+
+    Aos.init();
+  }, []);
+ 
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
   };
 
   var settings = {
@@ -40,7 +69,7 @@ function App() {
     centerMode: true,
     autoPlay: true,
     autoplay: true,
-    speed: 2000,
+    speed: 1000,
     autoplaySpeed: 4000,
 
     slidesToScroll: 1,
@@ -75,6 +104,7 @@ function App() {
 
   return (
     <div className="h-full w-full bg-white  mt-48 overflow-hidden">
+      {/* =====================about========================== */}
       <section className=" " id="about">
         <div className=" w-[84%]  mx-auto ">
           <h1 className=" text-[28px]  w-full md:text-[42px] lg:w-[50%] font-bold  tracking-normal">
@@ -91,7 +121,7 @@ function App() {
                 transforming your vision into reality with strategies that
                 deliver measurable results and sustainable growth.
               </p>
-              <div className="capitalize  flex gap-2 underline text-sm">
+              <div className="capitalize  flex gap-2 underline text-sm hover:gap-4">
                 <p> Start Your Journey with Us!</p>
                 <img src={Arrow} className="w-5" />
               </div>
@@ -99,13 +129,19 @@ function App() {
           </div>
         </div>
 
-        <div className=" h-[100dvh] md:h-[660px] w-full  md:w-[84%] mx-auto bg-slate-500">
+   
+{/* aos library custom animation */}
+        <div className="w-[80%]  mx-auto h-[670px]" data-aos="s"
+       data-aos-anchor-placement="top-center" 
+          data-aos-delay="300"
+   >
+  
           <video
             src={video}
             className="object-cover h-full w-full"
-            alt="video"
-          ></video>
-        </div>
+            alt="video" 
+          />
+               </div>
         <div className="py-14 grid md:grid-cols-3 w-[84%]  mx-auto">
           <div className=" font-semibold text-base">WHAT WE DO</div>
           <div className="flex flex-col gap-10  col-span-2">
@@ -116,12 +152,12 @@ function App() {
           </div>
         </div>
       </section>
-
+{/* =========================services================= */}
       <section id="services" className="flex flex-col gap-6">
-        <div className="w-[83%] mx-auto flex gap-5 flex-col  lg:flex-row ">
+        <div id="digitalMarketing" className="w-[83%] mx-auto flex gap-5 flex-col  lg:flex-row ">
           <div className="flex flex-col gap-4 lg:gap-12 w-full lg:w-1/2">
             <p className="text-xl lg:text-2xl xl:text-3xl font-bold">
-              Digital Marketing{" "}
+              Digital Marketing 
             </p>
             <div className="flex flex-col gap-8">
               <p className="text-base leading-[32px]">
@@ -143,7 +179,7 @@ function App() {
               </div>
             </div>
 
-            <div className="flex gap-1">
+            <div className="hidden md:flex gap-1">
               <p>learn more</p> <img src={Arrow} alt="arrow" />
             </div>
           </div>
@@ -163,7 +199,7 @@ function App() {
               <div className="slider-container ">
                 <Slider
                   ref={(slider) => {
-                    sliderRef = slider;
+                    sliderRef1 = slider;
                   }}
                   {...settings}
                 >
@@ -173,9 +209,15 @@ function App() {
                 </Slider>
               </div>
             </div>
+            <div className="flex justify-center w-full">
+            <div className="flex py-16  mx-auto gap-1 md:hidden ">
+              <p>learn more</p> <img src={Arrow} alt="arrow" />
+            </div>
+            </div>
+            
           </div>
         </div>
-        <div className="w-[83%] mx-auto gap-5 flex flex-col  lg:flex-row ">
+        <div id="creativeServices" className="w-[83%] mx-auto gap-5 flex flex-col  lg:flex-row ">
           <div className="flex flex-col gap-4 lg:gap-12 w-full lg:w-1/2">
             <p className="text-xl lg:text-2xl xl:text-3xl font-bold">
               Creative Services
@@ -198,13 +240,13 @@ function App() {
               </div>
             </div>
 
-            <div className="flex gap-1">
+            <div className=" hidden md:flex gap-1">
               <p>learn more</p> <img src={Arrow} alt="arrow" />
             </div>
           </div>
           <div className=" w-full lg:w-1/2">
             <div className="hidden w-full lg:flex  justify-end px-4">
-              <div onClick={next}>
+              <div onClick={next2}>
                 <img
                   src={nextIcon}
                   className="h-10 mb-4 lg:mb-12"
@@ -218,7 +260,7 @@ function App() {
               <div className="slider-container ">
                 <Slider
                   ref={(slider) => {
-                    sliderRef = slider;
+                    sliderRef2 = slider;
                   }}
                   {...settings}
                 >
@@ -227,10 +269,16 @@ function App() {
                   <img src={img9} alt="" className="p-2  md:h-[330px]" />
                 </Slider>
               </div>
+            
+            </div>
+            <div className="flex justify-center w-full">
+            <div className="flex py-16  mx-auto gap-1 md:hidden ">
+              <p>learn more</p> <img src={Arrow} alt="arrow" />
+            </div>
             </div>
           </div>
         </div>
-        <div className="w-[83%] mx-auto  gap-5  flex flex-col  lg:flex-row ">
+        <div  id="branding" className="w-[83%] mx-auto  gap-5  flex flex-col  lg:flex-row ">
           <div className="flex flex-col gap-4 lg:gap-12 w-full lg:w-1/2">
             <p className="text-xl lg:text-2xl xl:text-3xl font-bold">
              Branding
@@ -250,18 +298,18 @@ function App() {
                 Logo design
                 </div>
                 <div className="text-[#444444] bg-[#F1F1F1] py-2 px-5 rounded-full">
-         Brand Identity
+                Brand Identity
                 </div>
               </div>
             </div>
 
-            <div className="flex gap-1">
+            <div className="hidden   md:flex gap-1">
               <p>learn more</p> <img src={Arrow} alt="arrow" />
             </div>
           </div>
           <div className=" w-full lg:w-1/2">
             <div className="hidden w-full lg:flex  justify-end px-4">
-              <div onClick={next}>
+              <div onClick={next3}>
                 <img
                   src={nextIcon}
                   className="h-10 mb-4 lg:mb-12"
@@ -275,7 +323,7 @@ function App() {
               <div className="slider-container ">
                 <Slider
                   ref={(slider) => {
-                    sliderRef = slider;
+                    sliderRef3 = slider;
                   }}
                   {...settings}
                 >
@@ -284,6 +332,11 @@ function App() {
                   <img src={img9} alt="" className="p-2  md:h-[330px]" />
                 </Slider>
               </div>
+            </div>
+            <div className="flex justify-center w-full">
+            <div className="flex py-16  mx-auto gap-1 md:hidden ">
+              <p>learn more</p> <img src={Arrow} alt="arrow" />
+            </div>
             </div>
           </div>
         </div>
@@ -426,8 +479,8 @@ function App() {
 
       <section id="process" className="bg-[#F5F5F5]  py-[80px] lg:py-[150px]">
         <div className="w-[84%]  mx-auto">
-          <div className="lg:p-12 gap-y-3 grid md:grid-cols-3 w-full">
-            <div className=" font-semibold text-sm md:text-base uppercase xl:text-nowrap  w-full">
+          <div className="py-20  gap-y-3 grid md:grid-cols-3 w-full">
+            <div className=" font-semibold text-sm md:text-base  uppercase xl:text-nowrap  w-full ">
               OUR PROCESS AT NEON STRATEGIES
             </div>
             <div className=" col-span-2   lg:text-[48px]  lg:leading-[72px] text-2xl lg:text-4xl  xl:text-5xl  font-thin">
@@ -437,7 +490,7 @@ function App() {
           </div>
 
           <div className="grid   grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 ">
-            <div className="font-semibold  flex flex-col gap-5 lg:-12">
+            <div className="font-semibold  flex flex-col gap-5 ">
               <p className="font-semibold lg:font-xl leading-10">
                 We ensures your marketing remains effective and relevant.
               </p>
@@ -544,9 +597,10 @@ function App() {
 
 
 
-            <div className="flex justify-center items-center">
-              <button className="border-2 hover:border-primaryCol border-black md:text-xl flex gap-2 items-center py-2 px-4 rounded-full hover:bg-primaryCol hover:text-white">
-                Contact Us to Get Started <img src={Arrow} alt="arrow" />
+            <div className="flex justify-center items-center pt-16">
+              <button  onMouseEnter={handleMouseEnter} 
+                   onMouseLeave={handleMouseLeave}  className="border-2 hover:border-primaryCol border-black md:text-xl flex gap-2 items-center py-2 px-4 rounded-full hover:bg-primaryCol hover:text-white">
+                Contact Us to Get Started <img src={hovered? WhiteArrow: Arrow} alt="arrow" />
               </button>
             </div>
           </div>
@@ -627,45 +681,39 @@ function App() {
           <div className="text-[#444444] text-2xl lg:text-[34px] text-center">
             info@neostrategies.com
           </div>
-
           <div className="grid md:grid-cols-4 gap-3 lg:gap-5 w-full">
-            <div className="flex flex-col gap-4 ]">
-              <p className="font-semibold leading-lose uppercase">ADDRESS</p>
-
-              <div className="text-[#444444] leading-relaxed font-light">
-                <ul>
-                  <li>Neon Stratergies Ltd.</li>
-                  <li>123 Market Street</li>
-                  <li>London, W1A 1AA</li>
-                  <li>United Kingdom</li>
-                </ul>
-              </div>
-            </div>
-            <div className="text-left py-8 w-full col-span-2">
-              <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-            </div>
-            <div className="flex flex-col gap-4 ]">
-              <p className="font-semibold leading-lose uppercase">Follow us</p>
-
-              <div className="flex w-full gap-2">
-                <div className="p-2 lg:p-4 rounded-full border-2">
-                  <img src={linkedin} alt="" className="h-[18px]" />
-                </div>
-
-                <div className="p-2 lg:p-4 rounded-full border-2">
-                  <img src={facebook} alt="" className="h-[18px]" />
-                </div>
-
-                <div className="p-2 lg:p-4 rounded-full border-2">
-                  <img src={twitter} alt="" className="h-[18px]" />
-                </div>
-
-                <div className="p-2 lg:p-4 rounded-full border-2">
-                  <img src={instagram} alt="" className="h-[18px]" />
-                </div>
-              </div>
-            </div>
-          </div>
+  <div className="flex flex-col  gap-4">
+    <p className="font-semibold leading-lose uppercase">ADDRESS</p>
+    <div className="text-[#444444] leading-relaxed font-light">
+      <ul>
+        <li>Neon Stratergies Ltd.</li>
+        <li>123 Market Street</li>
+        <li>London, W1A 1AA</li>
+        <li>United Kingdom</li>
+      </ul>
+    </div>
+  </div>
+  <div className="text-left py-8 w-full col-span-2">
+    <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+  </div>
+  <div className="flex flex-col  gap-4 w-full">
+    <p className="font-semibold leading-lose uppercase">Follow us</p>
+    <div className="flex justify-between w-full gap-2">
+      <div className="p-4 lg:p-4 rounded-full border-2">
+        <img src={linkedin} alt="LinkedIn" className="h-[18px]" />
+      </div>
+      <div className="p-4  md lg:p-4 rounded-full border-2">
+        <img src={facebook} alt="Facebook" className="h-[18px]" />
+      </div>
+      <div className="p-4 lg:p-4 rounded-full border-2">
+        <img src={twitter} alt="Twitter" className="h-[18px]" />
+      </div>
+      <div className="p-4 lg:p-4 rounded-full border-2">
+        <img src={instagram} alt="Instagram" className="h-[18px]" />
+      </div>
+    </div>
+  </div>
+</div>
           <div className="w-full border-t py-7 md:py-14 flex justify-start flex-col md:flex-row md:justify-between gap-3 text-[#444444] text-sm lg:text-base">
             <div>© 2024 Neon Strategies, All rights reserved.</div>
             <div className="underline">

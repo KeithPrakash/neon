@@ -33,3 +33,38 @@ body{
 }
 
 
+
+/* src/VideoComponent.css */
+.con {
+    width: 100px; /* Set the initial width */
+    height: 50px; /* Set the height */
+    background-color: #ccc; /* Background color for visibility */
+    transform: scaleX(1.6); /* Scale along the x-axis to 160% */
+  }
+  .scale-element {
+    /* Initial styles for your element */
+    width: 84%; /* Adjust initial width */
+    height: 100px; /* Adjust initial height */
+    background-color: #eee;
+    margin: auto;
+  }
+  
+  [data-aos="custom"] {
+    transform: scale(1); /* Initial scale (no change) */
+    transition: transform 0.5s ease-in-out;
+    transition-property: transform; /* Animation timing */
+  }
+  
+  [data-aos="custom"].aos-animate {
+    transform: scaleX(1.5, 1); /* Scale on animation (width by 1.2, height by 1) */
+  }
+  
+
+  [data-aos='s'] {
+    transform: scale(1);
+    transition-property: transform;
+  }
+  /*  Animation ends here */
+  [data-aos='s'].aos-animate {
+    transform: scaleX(1.6);
+  }
