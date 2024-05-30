@@ -698,7 +698,7 @@ function App() {
   </div>
   <div className="flex flex-col  gap-4 w-full">
     <p className="font-semibold leading-lose uppercase">Follow us</p>
-    <div className="flex justify-between w-full gap-2">
+    <div className="flex justify-between lg:justify-start w-full gap-2">
       <div className="p-4 lg:p-4 rounded-full border-2">
         <img src={linkedin} alt="LinkedIn" className="h-[18px]" />
       </div>
