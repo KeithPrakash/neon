@@ -34,7 +34,7 @@ const Navbar = () => {
       </div>
       <div className='w-auto'> 
         
-        <button className='hidden md:block font-light bg-primaryCol hover:bg-secondaryCol hover:scale-105 px-4 py-2 rounded-full  text-white'>Let's talk</button>
+        <button className='hidden md:block font-light bg-primaryCol hover:bg-secondaryCol hover:scale-105 px-4 py-2 rounded-full  text-white'> <a href="#contact">Let's talk</a> </button>
 
       <div className={` md:hidden flex-col cursor-pointer justify-center items-center gap-2 lg:gap-5 text-base`}>
 
